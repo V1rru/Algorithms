@@ -1,17 +1,17 @@
-# amount of figures and the size of the field (n figures, n*n field)
-n = int(input())
+# Amount of figures and the size of the field (n figures, n*n field)
+n = int(input("Enter the amount of figures: "))
 
-# matrix - the chess field
+# Matrix - the chess field
 matrix = []
 
-# filling the empty field with 0 values
+# Filling the empty field with 0 values
 for i in range(n):
     temp = []
     for j in range(n):
         temp.append(0)
     matrix.append(temp)
 
-# function checks the ability to place a figure
+# Function checks the ability to place a figure
 def Checker(str, col):
 
     # Checking the row (from the left side before the possible figure's place)
@@ -53,7 +53,7 @@ def Checker(str, col):
 
     return True
 
-# places the figures on their places
+# Places the figures on their places
 def Positioner(column):
     
     if column >= n:
@@ -69,8 +69,12 @@ def Positioner(column):
 
         return False
 
+# Calling the function
 Positioner(0)
 
+# Printing the final matrix
+print()
+print("The result is:")
 for i in range(n):
     tmp = ""
     for j in range(n):
