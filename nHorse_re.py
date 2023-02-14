@@ -7,6 +7,10 @@ res = 0
 # Matrix - the chess field
 matrix = []
 
+# The set of possible movements
+mvX = [2, 1, -1, -2, -2, -1, 1, 2]
+mvY = [1, 2, 2, 1, -1, -2, -2, -1]
+
 # Filling the empty field with 0 values
 for i in range(n):
     temp = []
@@ -23,5 +27,7 @@ def Positioner(cX, cY, res):
     if res == pow(n, 2):
         return True
     else:
-        
+        for i in range(8):
+            nX = cX + mvX[i]
+            nY = cY + mvY[i]
             
