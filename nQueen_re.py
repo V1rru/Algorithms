@@ -80,3 +80,4 @@ for i in range(n):
     for j in range(n):
         tmp += str(matrix[i][j]) + " "
     print(tmp)
+    
