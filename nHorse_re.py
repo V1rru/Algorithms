@@ -2,7 +2,7 @@
 n = int(input("Enter the size of the field: "))
 
 # The amount of steps made
-res = 0
+res = 1
 
 # Matrix - the chess field
 matrix = []
@@ -19,8 +19,10 @@ for i in range(n):
     matrix.append(temp)
 
 # Function checks the ability to take a place
-def Checker():
-
+def Checker(nX, nY):
+    if(nX >= 0 and nY >= 0 and nX < n and nY < n and matrix[nX][nY] == 0):
+        return True
+    return False
 
 # Places the figures on their places
 def Positioner(cX, cY, res):
@@ -30,4 +32,25 @@ def Positioner(cX, cY, res):
         for i in range(8):
             nX = cX + mvX[i]
             nY = cY + mvY[i]
-            
+            if Checker(nX, nY) == True:
+                matrix[nX][nY] = res
+
+                if Positioner(nX, nY, res + 1) == True:
+                    return True
+
+                matrix[nX][nY] = 0
+
+        return False
+
+# Calling the method
+Positioner(0, 0, res)
+
+# Printing the final matrix
+print()
+print("The result is:")
+for i in range(n):
+    tmp = ""
+    for j in range(n):
+        tmp += str(matrix[i][j]) + " "
+    print(tmp)
+    

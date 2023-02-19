@@ -69,7 +69,7 @@ def Positioner(column):
 
         return False
 
-# Calling the function
+# Calling the method
 Positioner(0)
 
 # Printing the final matrix
