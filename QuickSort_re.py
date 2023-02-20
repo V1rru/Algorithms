@@ -37,7 +37,8 @@ def file_reader():
 
 
 file_reader()
-print(quick_sort([7, 6, 9, 8, 10, 4, 3, 5]))
+# print(quick_sort([7, 6, 9, 8, 10, 4, 3, 5]))
+print(quick_sort(array))
 # print(quick_sort([1, 2, 3, 4, 5, 6, 7, 8]))
 print(amount_of_comparisons)
 print(amount_of_permutations)
