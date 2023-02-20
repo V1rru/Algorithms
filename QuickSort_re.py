@@ -33,7 +33,6 @@ def file_reader():
             break
         array.append(int(line))
     file.close()
-    print(array)
 
 
 file_reader()
