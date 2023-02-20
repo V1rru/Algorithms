@@ -23,8 +23,22 @@ def quick_sort(n):
 
     return quick_sort(left) + center + quick_sort(right)
 
+array = []
 
+def file_reader():
+    file = open("D:\VS2022 Projects\Sorting Algorithms\Lists\\100 random elements.txt", "r")
+    while True:
+        line = file.readline().rstrip()
+        if not line:
+            break
+        array.append(int(line))
+    file.close()
+    print(array)
+
+
+file_reader()
 print(quick_sort([7, 6, 9, 8, 10, 4, 3, 5]))
 # print(quick_sort([1, 2, 3, 4, 5, 6, 7, 8]))
 print(amount_of_comparisons)
 print(amount_of_permutations)
+
