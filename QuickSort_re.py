@@ -1,6 +1,9 @@
 amount_of_comparisons = 0
 amount_of_permutations = 0
 
+import sys
+sys.setrecursionlimit(10000)
+
 def quick_sort(n):
     
     global amount_of_comparisons
@@ -26,7 +29,7 @@ def quick_sort(n):
 array = []
 
 def file_reader():
-    file = open("D:\VS2022 Projects\Sorting Algorithms\Lists\\100 random elements.txt", "r")
+    file = open("D:\VS2022 Projects\Sorting Algorithms\Lists\\10000 reversed random elements.txt", "r")
     while True:
         line = file.readline().rstrip()
         if not line:
@@ -39,6 +42,5 @@ file_reader()
 # print(quick_sort([7, 6, 9, 8, 10, 4, 3, 5]))
 print(quick_sort(array))
 # print(quick_sort([1, 2, 3, 4, 5, 6, 7, 8]))
-print(amount_of_comparisons)
-print(amount_of_permutations)
-
+print("Количество сравнений: " + str(amount_of_comparisons))
+print("Количество перестановок: " + str(amount_of_permutations))
