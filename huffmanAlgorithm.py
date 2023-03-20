@@ -83,7 +83,7 @@ def printNodes(root, val=""):
 
 # Method that is used to start building Huffman code tree
 def activateCoding():
-    text = "text as example"
+    text = "some kind of text that should be coded"
     createDictionaryOfLetters(text)
 
 
