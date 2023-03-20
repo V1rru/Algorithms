@@ -1,4 +1,3 @@
-from queue import PriorityQueue
 import heapq
 
 # Class that describes the node of the three
@@ -9,19 +8,14 @@ class Node:
         self.character = character
         self.leftNode = leftNode
         self.rightNode = rightNode
+        self.direction = ""
 
     def __lt__(self, next):
         return self.frequency < next.frequency
 
+    def getCharacter(self):
+        return self.character        
 
-# class PriorityEntry(object):
-#     def __init__(self, priority, data):
-#         self.data = data
-#         self.priority = priority
-
-#     def __lt__(self, other):
-#         return self.priority < other.priority
-        
 
 # Method creates a dictionary of each letter from the text
 def createDictionaryOfLetters(text):
@@ -41,18 +35,57 @@ def createDictionaryOfLetters(text):
     lettersWithTheirAmount = {key: value for key, value in reversed(sorted(lettersWithTheirAmount.items(), key=lambda item: item[1]))}
     
     # Filling the priority queue with letters and their frequences
-    nodesByPriority = heapq
-    for element in range(len(list(lettersWithTheirAmount))):
-        # nodesByPriority.put(lettersWithTheirAmount.get(element))
-        heapq.heappush(nodesByPriority, Node())
+    nodesByPriority = []
+    for element in range(len(list(lettersWithTheirAmount.items()))):
+        heapq.heappush(nodesByPriority, Node(list(lettersWithTheirAmount.items())[element][1], list(lettersWithTheirAmount.items())[element][0]))
 
-    # print(nodesByPriority)
-    print(list(lettersWithTheirAmount.items())[0][1])
+    # Do till there is more than one node in the queue
+    while len(nodesByPriority) > 1:
+
+        # Removing the two nodes of highest priority (lowest frequency) from the queue
+        leftNode = heapq.heappop(nodesByPriority)
+        rightNode = heapq.heappop(nodesByPriority)
+
+        # Assigning directional values to these two nodes
+        leftNode.direction = 0
+        rightNode.direction = 1
+
+        # Creating the parent node with its frequency consistion of the sum of its children frequencies
+        parentNode = Node(leftNode.frequency + rightNode.frequency, leftNode.character + rightNode.character, leftNode, rightNode)
+
+        # Adding the newest parent node to the priority queue
+        heapq.heappush(nodesByPriority, parentNode)
+
+    # Saving the root of the Huffman tree
+    root = nodesByPriority[0]
+
+    # Printing the code for each letter
+    print("Huffman codes are:" + "\n")
+    printNodes(nodesByPriority[0])
 
 
+# Method that prints the Huffman code for each unique letter from the text
+def printNodes(root, val=""):
 
+ # Huffman code for current node
+    newVal = val + str(root.direction)
+ 
+    # If node is not an edge node then traverse inside it
+    if (root.leftNode):
+        printNodes(root.leftNode, newVal)
+    if (root.rightNode):
+        printNodes(root.rightNode, newVal)
+ 
+    # If node is edge node then display its huffman code
+    if (not root.leftNode and not root.rightNode):
+        print(f"{root.character} = {newVal}")
+
+
+# Method that is used to start building Huffman code tree
 def activateCoding():
     text = "text as example"
     createDictionaryOfLetters(text)
 
+
+# Calling the start method
 activateCoding()
